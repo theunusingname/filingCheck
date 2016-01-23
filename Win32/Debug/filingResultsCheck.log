@@ -1,0 +1,31 @@
+﻿Build started 23.01.2016 14:26:42.
+     1>Project "C:\projects\filingResultsCheck\filingResultsCheck.vcxproj" on node 2 (Build target(s)).
+     1>CustomBuild:
+         Moc'ing exam.h...
+         Qt: Untested Windows version 10.0 detected!
+         Moc'ing excelreader.h...
+         Qt: Untested Windows version 10.0 detected!
+         Moc'ing mainwindow.h...
+         Qt: Untested Windows version 10.0 detected!
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I. /I..\..\qt\5.4\msvc2013\include /I..\..\qt\5.4\msvc2013\include\ActiveQt /I..\..\qt\5.4\msvc2013\include\QtWidgets /I..\..\qt\5.4\msvc2013\include\QtGui /I..\..\qt\5.4\msvc2013\include\QtANGLE /I..\..\qt\5.4\msvc2013\include\QtCore /Idebug /I. /I"..\..\qt\5.4\msvc2013\mkspecs\win32-msvc2013" /I.\GeneratedFiles /Zi /nologo /W3 /WX- /Od /Oy- /D _CONSOLE /D UNICODE /D WIN32 /D QT_AXCONTAINER_LIB /D QT_AXBASE_LIB /D QT_WIDGETS_LIB /D QT_GUI_LIB /D QT_CORE_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"Win32\Debug\\" /Fd"Win32\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt -Zm200 -w34100 -w34189 Debug\moc_exam.cpp Debug\moc_excelreader.cpp Debug\moc_mainwindow.cpp mainwindow.cpp
+         moc_exam.cpp
+         moc_excelreader.cpp
+         moc_mainwindow.cpp
+         mainwindow.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"debug\\filingResultsCheck.exe" /NOLOGO /LIBPATH:C:\Qt\5.4\msvc2013\lib /LIBPATH:C:\Qt\5.4\msvc2013\lib /LIBPATH:C:\Qt\5.4\msvc2013\lib C:\Qt\5.4\msvc2013\lib\Qt5AxContainerd.lib C:\Qt\5.4\msvc2013\lib\Qt5AxBased.lib C:\Qt\5.4\msvc2013\lib\Qt5AxBased.lib C:\Qt\5.4\msvc2013\lib\Qt5Widgetsd.lib C:\Qt\5.4\msvc2013\lib\Qt5Guid.lib C:\Qt\5.4\msvc2013\lib\Qt5Cored.lib ole32.lib oleaut32.lib user32.lib gdi32.lib advapi32.lib C:\Qt\5.4\msvc2013\lib\Qt5Widgetsd.lib C:\Qt\5.4\msvc2013\lib\Qt5Guid.lib C:\Qt\5.4\msvc2013\lib\Qt5Cored.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"debug\filingResultsCheck.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /MACHINE:X86 /SAFESEH "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" Win32\Debug\moc_exam.obj
+         Win32\Debug\moc_excelreader.obj
+         Win32\Debug\moc_mainwindow.obj
+         Win32\Debug\exam.obj
+         Win32\Debug\excelreader.obj
+         Win32\Debug\main.obj
+         Win32\Debug\mainwindow.obj
+         Win32\Debug\reportvalidator.obj
+         filingResultsCheck.vcxproj -> C:\projects\filingResultsCheck\debug\filingResultsCheck.exe
+     1>Done Building Project "C:\projects\filingResultsCheck\filingResultsCheck.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:11.21
