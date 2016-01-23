@@ -27,6 +27,10 @@ void excelReader::FeelTableWidget(QTableWidget *table, int sheetn)
     table->setRowCount(size.height());
     table->setColumnCount(size.width());
 
+	progressWidget progress(size.height());
+	progress.show();
+
+
     for ( int row = 0; row < size.height(); row++ ){
         for ( int column = 0; column < size.width(); column++ ){
             QAxObject* cell = sheet->querySubObject("Cells(int,int)",row  + 1,column  + 1);
@@ -39,6 +43,8 @@ void excelReader::FeelTableWidget(QTableWidget *table, int sheetn)
         } 
         if(interruptLoad)
             break;
+		qDebug() << row << endl;
+		progress.progressNow(row);
     }
     interruptLoad=false;
     emit loadEnd();

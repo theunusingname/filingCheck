@@ -8,6 +8,7 @@
 #include <iostream>
 #include <QDebug>
 #include <vector>
+#include "progressWidget.h"
 
 class excelReader: public QObject
 {
