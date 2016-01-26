@@ -11,7 +11,6 @@
 #include "reportvalidator.h"
 #include <QRegExp>
 
-enum{V2,V3,XML};
 
 namespace Ui {
 class MainWindow;
@@ -25,7 +24,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-public slots:
+private slots:
     void checkResults();
     void lineListner(QString lineText);
     void choseFoler();
@@ -33,6 +32,9 @@ public slots:
     void openTestCases();
     void choseTestCaseFile();
     void deleteReader();
+	void selectCases();
+	void deleteWaitingElement();
+	void batchCheck();
 
 
 private:
@@ -45,9 +47,12 @@ private:
     QStringList filesToCheck;
     ReportValidator *validator;
     QStringList expectedSections;
-
+	QList<QTableWidgetSelectionRange> expectedResults;
     QStringList getListFilesInDir(QString path);
+
     bool validateReport(QString filep);
+	
+	//QVariant getCurrentTableItem(int row, int column);
 
 signals:
     void stopLoadFile();

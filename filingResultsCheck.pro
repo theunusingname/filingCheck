@@ -19,11 +19,13 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     reportvalidator.cpp \
     excelreader.cpp \
-    exam.cpp
+    exam.cpp \
+    progressWidget.cpp
 
 HEADERS  += mainwindow.h \
     reportvalidator.h \
     excelreader.h \
-    exam.h
+    exam.h \
+    progressWidget.h
 
 FORMS    += mainwindow.ui

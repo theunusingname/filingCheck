@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>781</width>
-    <height>498</height>
+    <width>973</width>
+    <height>733</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,110 +30,78 @@
        <attribute name="title">
         <string>Tab 1</string>
        </attribute>
-       <widget class="QPushButton" name="addWatingButton">
-        <property name="geometry">
-         <rect>
-          <x>640</x>
-          <y>110</y>
-          <width>93</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Add</string>
-        </property>
-       </widget>
-       <widget class="QComboBox" name="comboBox">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>10</y>
-          <width>191</width>
-          <height>22</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lineEdit">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>40</y>
-          <width>301</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>C:/</string>
-        </property>
-        <property name="readOnly">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="ChoseFolderButton">
-        <property name="geometry">
-         <rect>
-          <x>330</x>
-          <y>40</y>
-          <width>93</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Chose folder</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="addWatingLine">
-        <property name="geometry">
-         <rect>
-          <x>440</x>
-          <y>110</y>
-          <width>191</width>
-          <height>31</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="CheckButton">
-        <property name="geometry">
-         <rect>
-          <x>470</x>
-          <y>40</y>
-          <width>93</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Check</string>
-        </property>
-       </widget>
-       <widget class="QListWidget" name="watingListWidget">
-        <property name="geometry">
-         <rect>
-          <x>455</x>
-          <y>160</y>
-          <width>241</width>
-          <height>192</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QTableWidget" name="testCaseTable">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>111</y>
-          <width>391</width>
-          <height>241</height>
-         </rect>
-        </property>
-       </widget>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
+           <widget class="QComboBox" name="comboBox"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLineEdit" name="lineEdit">
+            <property name="text">
+             <string>C:/</string>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="ChoseFolderButton">
+            <property name="text">
+             <string>Chose folder</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2" colspan="2">
+           <widget class="QListWidget" name="watingListWidget"/>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="CheckButton">
+            <property name="text">
+             <string>Check</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLineEdit" name="addWatingLine"/>
+          </item>
+          <item row="1" column="3">
+           <widget class="QPushButton" name="addWatingButton">
+            <property name="text">
+             <string>Add</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3">
+           <widget class="QPushButton" name="deleteButton">
+            <property name="text">
+             <string>Delete</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="QTableWidget" name="testCaseTable"/>
+          </item>
+          <item row="2" column="1">
+           <widget class="QPushButton" name="ClearFileListButton">
+            <property name="text">
+             <string>Clear list</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
         <string>Tab 2</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout">
-          <item>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
            <layout class="QHBoxLayout" name="horizontalLayout_3">
             <item>
              <widget class="QLineEdit" name="openTestcaseLineEdit">
@@ -151,8 +119,51 @@
             </item>
            </layout>
           </item>
-          <item>
+          <item row="1" column="0">
            <widget class="QTableWidget" name="tableWidget"/>
+          </item>
+          <item row="2" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QPushButton" name="selectCasesButton">
+              <property name="maximumSize">
+               <size>
+                <width>100</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Add to wait</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="BatchCheckButton">
+              <property name="maximumSize">
+               <size>
+                <width>100</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>BatchCheck</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </item>
@@ -167,7 +178,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>781</width>
+     <width>973</width>
      <height>26</height>
     </rect>
    </property>
