@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+
     outputOptions=new QStringList();
     outputOptions->push_back("V2");
     outputOptions->push_back("V3");
