@@ -8,6 +8,7 @@
 #include <iostream>
 #include <QDebug>
 #include <vector>
+#include "progressWidget.h"
 
 class excelReader: public QObject
 {
@@ -30,7 +31,7 @@ private:
     QString filePath;
     bool interruptLoad;
     int sheetsNumb;
-    //QTableWidgetItem *itemsArr[][];
+    
 
 
     void PopulateTableItemArr(int sheet);
