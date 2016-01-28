@@ -170,21 +170,33 @@ void MainWindow::deleteReader()
 void MainWindow::selectCases()
 {
  QList< QTableWidgetItem *> itemlist= ui->tableWidget->selectedItems();
- QList<QTableWidgetSelectionRange> selectedRanges;
- 
 
+ expectedSectionsForBatch.clear();
  foreach (QTableWidgetItem *var , itemlist)
  {
-	 this->expectedSections.push_back(var->text());
+	 this->expectedSectionsForBatch.push_back(var->text());
 	 ui->watingListWidget->addItem(var->text());
  }
 
- selectedRanges=ui->tableWidget->selectedRanges();
- 
- foreach(QTableWidgetSelectionRange range, selectedRanges)
+ if (ui->tableWidget->selectedRanges().size() == 1){
+	 expectedSectionsRangeToBatch = ui->tableWidget->selectedRanges()[0];
+	 for (size_t x = expectedSectionsRangeToBatch.leftColumn(); x < expectedSectionsRangeToBatch.rightColumn(); x++)
+	 {
+		 for (size_t y = expectedSectionsRangeToBatch.topRow(); y < expectedSectionsRangeToBatch.bottomRow(); y++)
+		 {
+			 ui->tableWidget->item(y, x)->setBackgroundColor(Qt::blue);
+		 }
+
+	 }
+ }
+ else
  {
-	 int row = range.topRow();
-	 int column = range.leftColumn();
+	 qDebug() << "desn't support for multiple selection";
+	 return;
+ }
+
+ int row = expectedSectionsRangeToBatch.topRow();
+ int column = expectedSectionsRangeToBatch.leftColumn();
 	 while (QString::compare(ui->tableWidget->item(row,column)->text(),""))
 	 {
 		 column++;
@@ -192,8 +204,8 @@ void MainWindow::selectCases()
 		 if (column == ui->tableWidget->columnCount())
 			 break;
 	 }
-	 this->expectedResults.push_back(QTableWidgetSelectionRange(range.topRow(), range.leftColumn()+1, range.bottomRow(), column));
- }
+	 this->expectedResults.push_back(QTableWidgetSelectionRange(expectedSectionsRangeToBatch.topRow(), expectedSectionsRangeToBatch.leftColumn() + 1, expectedSectionsRangeToBatch.bottomRow(), column));
+
 
  foreach(QTableWidgetSelectionRange range, expectedResults)
  {
@@ -232,10 +244,10 @@ void MainWindow::batchCheck()
 		{
 			int testCaseNum;
 			int section;
-			for (size_t x = range.leftColumn(), testCaseNum = 1; x <= range.rightColumn(); x++, testCaseNum++)
+			for (int x = range.leftColumn(), testCaseNum = 1; x <= range.rightColumn(); x++, testCaseNum++)
 			{
 
-				for (size_t y = range.topRow(), section = 0; y <= range.bottomRow(); y++, section++)
+				for (int y = range.topRow(), section = 0; y <= range.bottomRow(); y++, section++)
 				{
 					char tcm[6] = "";
 					QStringList filesToCheckNow = this->filesToCheck.filter("case_" + QString(itoa(testCaseNum,tcm,10))+"_"+ui->comboBox->currentText(),Qt::CaseInsensitive);
@@ -252,7 +264,7 @@ void MainWindow::batchCheck()
 						QTextStream stream(&file);
 						QString fileText = stream.readAll();
 
-						if (fileText.indexOf(ui->tableWidget->item(range.topRow()+section,range.leftColumn()-1) < 0 && ui->tableWidget->item(y, x)->text().toLower() == "true"))
+						if (fileText.indexOf(expectedSectionsForBatch[section]) < 0 && ui->tableWidget->item(y, x)->text().toLower() == "true")
 						{
 							ui->tableWidget->item(y, x)->setTextColor(Qt::red);
 						}

@@ -91,9 +91,5 @@ excelReader::~excelReader()
 	delete sheets;
 	delete workbook;
 	delete workbooks;
-	delete excel;
-  // workbooks->clear();
-    //
-   // 
-  
+	delete excel; 
 }

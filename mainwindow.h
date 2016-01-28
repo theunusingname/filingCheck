@@ -47,6 +47,8 @@ private:
     QStringList filesToCheck;
     ReportValidator *validator;
     QStringList expectedSections;
+	QStringList expectedSectionsForBatch;
+	QTableWidgetSelectionRange expectedSectionsRangeToBatch;
 	QList<QTableWidgetSelectionRange> expectedResults;
     QStringList getListFilesInDir(QString path);
 
