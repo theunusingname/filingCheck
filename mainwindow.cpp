@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->ChoseTestCaseButton,SIGNAL(clicked(bool)),this,SLOT(choseTestCaseFile()));
 	connect(ui->selectCasesButton, SIGNAL(clicked(bool)), this, SLOT(selectCases()));
 	connect(ui->deleteButton, SIGNAL(clicked(bool)), this, SLOT(deleteWaitingElement()));
+	connect(ui->BatchCheckButton, SIGNAL(clicked(bool)), this, SLOT(batchCheck()));
 
 }
 
@@ -87,7 +88,7 @@ void MainWindow::openTestCases()
 	connect(this->caseReader, SIGNAL(loadEnd()), this, SLOT(deleteReader()));
 	connect(this, SIGNAL(stopLoadFile()), caseReader, SLOT(interruptLoading()));
 
-    caseReader->FeelTableWidget(ui->tableWidget,1);
+    caseReader->FeelTableWidget(ui->tableWidget,4);
 }
 
 void MainWindow::lineListner(QString lineText)
@@ -186,8 +187,10 @@ void MainWindow::selectCases()
 	 int column = range.leftColumn();
 	 while (QString::compare(ui->tableWidget->item(row,column)->text(),""))
 	 {
-		 //row++;
 		 column++;
+		 qDebug() << ui->tableWidget->columnCount();
+		 if (column == ui->tableWidget->columnCount())
+			 break;
 	 }
 	 this->expectedResults.push_back(QTableWidgetSelectionRange(range.topRow(), range.leftColumn()+1, range.bottomRow(), column));
  }
@@ -234,13 +237,30 @@ void MainWindow::batchCheck()
 
 				for (size_t y = range.topRow(), section = 0; y <= range.bottomRow(); y++, section++)
 				{
-					QStringList filesToCheckNow = this->filesToCheck.filter(QRegExp());
-					foreach(QString file, filesToCheckNow)
+					QStringList filesToCheckNow = this->filesToCheck.filter("case_1");
+					qDebug()<< filesToCheckNow.size();
+					foreach(QString filep, filesToCheckNow)
 					{
+						QFile file(filep);
 
+						if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+						{
+							qDebug() << "can't open file";
+							break;
+						}
+						QTextStream stream(&file);
+						QString fileText = stream.readAll();
+
+						if (fileText.indexOf(this->expectedSections[section]) < 0)
+						{
+							ui->tableWidget->item(y, x)->setTextColor(Qt::green);
+						}
+						else
+						{
+							ui->tableWidget->item(y, x)->setTextColor(Qt::red);
+						}
 					}
-					//фильтр файлов по кейсу, потом foreach файлу чекаем текущую секцию
-					;
+					
 				}
 
 			}
