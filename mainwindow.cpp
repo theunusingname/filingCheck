@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-//#define ui->tableWidget table;
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -88,7 +88,7 @@ void MainWindow::openTestCases()
 	connect(this->caseReader, SIGNAL(loadEnd()), this, SLOT(deleteReader()));
 	connect(this, SIGNAL(stopLoadFile()), caseReader, SLOT(interruptLoading()));
 
-    caseReader->FeelTableWidget(ui->tableWidget,4);
+    caseReader->FeelTableWidget(ui->tableWidget,1);
 }
 
 void MainWindow::lineListner(QString lineText)
@@ -232,13 +232,14 @@ void MainWindow::batchCheck()
 		{
 			int testCaseNum;
 			int section;
-			for (size_t x = range.leftColumn(), testCaseNum = 0; x <= range.rightColumn(); x++, testCaseNum++)
+			for (size_t x = range.leftColumn(), testCaseNum = 1; x <= range.rightColumn(); x++, testCaseNum++)
 			{
 
 				for (size_t y = range.topRow(), section = 0; y <= range.bottomRow(); y++, section++)
 				{
-					QStringList filesToCheckNow = this->filesToCheck.filter("case_1");
-					qDebug()<< filesToCheckNow.size();
+					char tcm[6] = "";
+					QStringList filesToCheckNow = this->filesToCheck.filter("case_" + QString(itoa(testCaseNum,tcm,10))+"_"+ui->comboBox->currentText(),Qt::CaseInsensitive);
+					qDebug() << "i check" << ("case_" + QString(itoa(testCaseNum, tcm, 10)) + ui->comboBox->currentText());
 					foreach(QString filep, filesToCheckNow)
 					{
 						QFile file(filep);
@@ -251,13 +252,13 @@ void MainWindow::batchCheck()
 						QTextStream stream(&file);
 						QString fileText = stream.readAll();
 
-						if (fileText.indexOf(this->expectedSections[section]) < 0)
+						if (fileText.indexOf(ui->tableWidget->item(range.topRow()+section,range.leftColumn()-1) < 0 && ui->tableWidget->item(y, x)->text().toLower() == "true"))
 						{
-							ui->tableWidget->item(y, x)->setTextColor(Qt::green);
+							ui->tableWidget->item(y, x)->setTextColor(Qt::red);
 						}
 						else
 						{
-							ui->tableWidget->item(y, x)->setTextColor(Qt::red);
+							ui->tableWidget->item(y, x)->setTextColor(Qt::green);
 						}
 					}
 					
