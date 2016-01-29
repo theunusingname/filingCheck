@@ -175,16 +175,16 @@ void MainWindow::selectCases()
  foreach (QTableWidgetItem *var , itemlist)
  {
 	 this->expectedSectionsForBatch.push_back(var->text());
-	 ui->watingListWidget->addItem(var->text());
+	 
  }
-
+ qDebug() << ui->tableWidget->selectedRanges().size();
  if (ui->tableWidget->selectedRanges().size() == 1){
 	 expectedSectionsRangeToBatch = ui->tableWidget->selectedRanges()[0];
-	 for (size_t x = expectedSectionsRangeToBatch.leftColumn(); x < expectedSectionsRangeToBatch.rightColumn(); x++)
+	 for (size_t x = expectedSectionsRangeToBatch.leftColumn(); x <= expectedSectionsRangeToBatch.rightColumn(); x++)
 	 {
-		 for (size_t y = expectedSectionsRangeToBatch.topRow(); y < expectedSectionsRangeToBatch.bottomRow(); y++)
+		 for (size_t y = expectedSectionsRangeToBatch.topRow(); y <= expectedSectionsRangeToBatch.bottomRow(); y++)
 		 {
-			 ui->tableWidget->item(y, x)->setBackgroundColor(Qt::blue);
+			 ui->tableWidget->item(y, x)->setCheckState(Qt::Checked);
 		 }
 
 	 }
@@ -200,7 +200,7 @@ void MainWindow::selectCases()
 	 while (QString::compare(ui->tableWidget->item(row,column)->text(),""))
 	 {
 		 column++;
-		 qDebug() << ui->tableWidget->columnCount();
+		// qDebug() << ui->tableWidget->columnCount();
 		 if (column == ui->tableWidget->columnCount())
 			 break;
 	 }
